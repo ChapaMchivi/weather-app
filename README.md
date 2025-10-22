@@ -56,8 +56,9 @@ This project showcases a **real‑world workflow**: integrating a third‑party 
 
 ---
 
-### 🔗 Project Link
-https://chapamchivi.github.io/weather-app/
+## 🔗 Project Link
+👉 [Live Demo](https://chapamchivi.github.io/weather-app/)  
+👉 [GitHub Repository](https://github.com/ChapaMchivi/weather-app)
 
 ---
 
