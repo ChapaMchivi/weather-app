@@ -2,7 +2,9 @@
 
 async function getWeather() {
   const city = document.getElementById("cityInput").value || "London";
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${city}&days=14&aqi=no&alerts=no`;
+
+  // ✅ Call your deployed backend proxy on Render
+  const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
 
   try {
     const response = await fetch(url);
