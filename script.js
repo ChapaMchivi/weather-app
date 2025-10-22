@@ -1,15 +1,13 @@
-// script.js
-
 async function getWeather() {
   const city = document.getElementById("cityInput").value || "London";
 
-  // ✅ Call your deployed backend proxy on Render
-  // const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
-
+  // ✅ Secure proxy call to Render backend
   const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
 
-
   try {
+    // Show loading spinner
+    document.getElementById("loading").style.display = "block";
+
     const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
@@ -17,8 +15,6 @@ async function getWeather() {
     console.log("Weather data:", data);
 
     const forecastDiv = document.getElementById("forecast");
-
-    // Clear previous results
     forecastDiv.innerHTML = `
       <h2>${data.location.name}, ${data.location.country}</h2>
       <p><strong>Local Time:</strong> ${data.location.localtime}</p>
@@ -27,11 +23,10 @@ async function getWeather() {
 
     const cardsContainer = forecastDiv.querySelector(".forecast-cards");
 
-    // Loop through 14 days of forecast
     data.forecast.forecastday.forEach((day, index) => {
       const card = document.createElement("div");
       card.classList.add("forecast-card", "fade-in");
-      card.style.animationDelay = `${index * 0.1}s`; // staggered fade-in
+      card.style.animationDelay = `${index * 0.1}s`;
 
       card.innerHTML = `
         <h3>${day.date}</h3>
@@ -46,29 +41,29 @@ async function getWeather() {
       cardsContainer.appendChild(card);
     });
 
-    // 🌈 Dynamic background based on current condition
     setDynamicBackground(data.current.condition.text.toLowerCase());
-
   } catch (error) {
     console.error("Error fetching weather data:", error);
     document.getElementById("forecast").innerHTML =
       `<p style="color:red;">Failed to load weather data. Please check the city name.</p>`;
+  } finally {
+    // Hide loading spinner
+    document.getElementById("loading").style.display = "none";
   }
 }
 
-// Function to change background gradient dynamically
 function setDynamicBackground(condition) {
   const body = document.body;
 
   if (condition.includes("sunny") || condition.includes("clear")) {
-    body.style.background = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)"; // warm tones
+    body.style.background = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
   } else if (condition.includes("rain") || condition.includes("drizzle")) {
-    body.style.background = "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)"; // cool blue
+    body.style.background = "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)";
   } else if (condition.includes("cloud")) {
-    body.style.background = "linear-gradient(135deg, #d7d2cc 0%, #304352 100%)"; // gray tones
+    body.style.background = "linear-gradient(135deg, #d7d2cc 0%, #304352 100%)";
   } else if (condition.includes("snow")) {
-    body.style.background = "linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)"; // icy
+    body.style.background = "linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%)";
   } else {
-    body.style.background = "linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%)"; // default sky
+    body.style.background = "linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%)";
   }
 }
