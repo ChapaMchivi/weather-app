@@ -55,13 +55,24 @@ This project showcases a **real‑world workflow**: integrating a third‑party 
 6. **Security**: Stored API key in `config.js` (ignored by Git) and provided `config.example.js` for setup.  
 
 ---
+## 📂 Project Structure
+
+WEATHER-APP/ │ ├── index.html          # Main entry point ├── style.css           # Styling and animations ├── script.js           # App logic and API calls ├── config.js           # Your real API key (ignored by Git) ├── config.example.js   # Template for others ├── .gitignore          # Ensures secrets stay private └── .devskim            # Security linting config
+
+
+
+
+---
 
 ## 🔗 Project Link
 👉 [Live Demo](https://chapamchivi.github.io/weather-app/)  
 👉 [GitHub Repository](https://github.com/ChapaMchivi/weather-app)
 
+
 ⚠️ Note: The live demo includes an exposed API key for demonstration purposes only. In production, API keys should always be secured.
 ---
+
+
 
 ### 📜 License
 This project is for educational and portfolio purposes. Feel free to fork and adapt.
