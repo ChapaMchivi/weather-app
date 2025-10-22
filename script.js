@@ -1,7 +1,7 @@
 async function getWeather() {
-  const city = document.getElementById("cityInput").value || "London";
+  const city = document.getElementById("cityInput").value.trim() || "London";
 
-  // ✅ Secure proxy call to Render backend
+  // Secure proxy call to Render backend
   const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
 
   try {
@@ -14,33 +14,7 @@ async function getWeather() {
     const data = await response.json();
     console.log("Weather data:", data);
 
-    const forecastDiv = document.getElementById("forecast");
-    forecastDiv.innerHTML = `
-      <h2>${data.location.name}, ${data.location.country}</h2>
-      <p><strong>Local Time:</strong> ${data.location.localtime}</p>
-      <div class="forecast-cards"></div>
-    `;
-
-    const cardsContainer = forecastDiv.querySelector(".forecast-cards");
-
-    data.forecast.forecastday.forEach((day, index) => {
-      const card = document.createElement("div");
-      card.classList.add("forecast-card", "fade-in");
-      card.style.animationDelay = `${index * 0.1}s`;
-
-      card.innerHTML = `
-        <h3>${day.date}</h3>
-        <img src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-        <p><i class="fa-solid fa-cloud"></i> ${day.day.condition.text}</p>
-        <p>🌡️ High: ${day.day.maxtemp_c} °C</p>
-        <p>🌡️ Low: ${day.day.mintemp_c} °C</p>
-        <p>💧 Humidity: ${day.day.avghumidity}%</p>
-        <p>💨 Max Wind: ${day.day.maxwind_kph} kph</p>
-      `;
-
-      cardsContainer.appendChild(card);
-    });
-
+    renderForecast(data);
     setDynamicBackground(data.current.condition.text.toLowerCase());
   } catch (error) {
     console.error("Error fetching weather data:", error);
@@ -50,6 +24,35 @@ async function getWeather() {
     // Hide loading spinner
     document.getElementById("loading").style.display = "none";
   }
+}
+
+function renderForecast(data) {
+  const forecastDiv = document.getElementById("forecast");
+  forecastDiv.innerHTML = `
+    <h2>${data.location.name}, ${data.location.country}</h2>
+    <p><strong>Local Time:</strong> ${data.location.localtime}</p>
+    <div class="forecast-cards"></div>
+  `;
+
+  const cardsContainer = forecastDiv.querySelector(".forecast-cards");
+
+  data.forecast.forecastday.forEach((day, index) => {
+    const card = document.createElement("div");
+    card.classList.add("forecast-card", "fade-in");
+    card.style.animationDelay = `${index * 0.1}s`;
+
+    card.innerHTML = `
+      <h3>${day.date}</h3>
+      <img src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
+      <p><i class="fa-solid fa-cloud"></i> ${day.day.condition.text}</p>
+      <p>🌡️ High: ${day.day.maxtemp_c} °C</p>
+      <p>🌡️ Low: ${day.day.mintemp_c} °C</p>
+      <p>💧 Humidity: ${day.day.avghumidity}%</p>
+      <p>💨 Max Wind: ${day.day.maxwind_kph} kph</p>
+    `;
+
+    cardsContainer.appendChild(card);
+  });
 }
 
 function setDynamicBackground(condition) {
