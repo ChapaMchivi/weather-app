@@ -36,7 +36,7 @@ This project demonstrates how to consume a REST API, parse JSON, and update the 
 ---
 
 ## 📜 Summary
-This project showcases a **real‑world workflow**: integrating a third‑party API, handling JSON data, and presenting it in a polished, user‑friendly interface. It’s designed to be **portfolio‑ready**, demonstrating both technical and design skills.
+This project showcases a **real‑world workflow**: integrating a third‑party API, handling JSON data, and presenting it in a polished, user‑friendly interface. (demonstrating both technical and design skills)
 
 ---
 
