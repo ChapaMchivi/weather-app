@@ -72,20 +72,9 @@ WEATHER-APP/
 ---
 
 ### 🔗 Project Link
-
+https://chapamchivi.github.io/weather-app/
     https://chapamchivi.github.io/weather-app/
----
 
-### 💼 Share on LinkedIn
-When sharing this project on LinkedIn, you can use a post like:
-
-> 🚀 Just finished building a **Weather App** as part of the Coursera Project Network!  
-> 🌦️ Features: 14‑day forecast, city search, dynamic backgrounds, and responsive design.  
-> 🛠️ Tech: HTML, CSS, JavaScript, WeatherAPI, GitHub.  
->  
-> Check it out here: [https://github.com/ChapaMchivi/weather-app](https://github.com/ChapaMchivi/weather-app)  
->  
-> #WebDevelopment #JavaScript #PortfolioProject #APIs
 
 ---
 
