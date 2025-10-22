@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="style.css">
   <!-- Font Awesome for weather-themed icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- ✅ Only script.js is needed now -->
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -14,14 +13,22 @@
     <h1><i class="fa-solid fa-cloud-sun"></i> Weather Forecast</h1>
 
     <!-- Search box -->
-    <input type="text" id="cityInput" placeholder="Enter city name" />
-    <button onclick="getWeather()">Get Weather</button>
+    <div class="search-section">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <button onclick="getWeather()">Get Weather</button>
+    </div>
+
+    <!-- Loading spinner (optional styling in CSS) -->
+    <div id="loading" style="display:none;">
+      <p>Loading weather data...</p>
+    </div>
 
     <!-- Forecast results -->
     <div id="forecast"></div>
   </div>
 </body>
 </html>
+
 
 
 
