@@ -1,9 +1,8 @@
----
-
 ## 🌦️ Weather App
 
 A responsive web application that fetches live weather data from the [WeatherAPI](https://www.weatherapi.com/) and displays a **14‑day forecast** with dynamic visuals.  
 Built as part of the **Coursera Project Network: Build a Website using an API with HTML, JavaScript, and JSON** course.
+
 
 ---
 
