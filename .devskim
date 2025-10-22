@@ -1,0 +1,8 @@
+{
+  "suppressions": [
+    {
+      "id": "DS173237",
+      "justification": "WeatherAPI demo key stored in config.js, ignored by Git"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Ignore API keys
+config.js
+
+# Logs
+*.log
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
