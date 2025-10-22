@@ -1,5 +1,3 @@
-// script.js
-
 // Fetch weather data from secure backend proxy
 async function getWeather() {
   const cityInput = document.getElementById("cityInput");
@@ -10,8 +8,7 @@ async function getWeather() {
   const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
 
   try {
-    // Show loading spinner
-    loadingSpinner.style.display = "block";
+    loadingSpinner.style.display = "block"; // Show loading spinner
 
     const response = await fetch(url);
     if (!response.ok) {
@@ -22,17 +19,16 @@ async function getWeather() {
     console.log("Weather data:", data);
 
     renderForecast(data);
-    setDynamicBackground(data.current.condition.text.toLowerCase());
+    setDynamicBackground(data.current?.condition?.text?.toLowerCase() || "");
   } catch (error) {
     console.error("Error fetching weather data:", error);
     forecastDiv.innerHTML = `
-      <p style="color:red;">
+      <p style="color:red;" role="alert">
         Failed to load weather data. Please check the city name or try again later.
       </p>
     `;
   } finally {
-    // Hide loading spinner
-    loadingSpinner.style.display = "none";
+    loadingSpinner.style.display = "none"; // Hide loading spinner
   }
 }
 
@@ -48,14 +44,17 @@ function renderForecast(data) {
   const cardsContainer = forecastDiv.querySelector(".forecast-cards");
 
   data.forecast.forecastday.forEach((day, index) => {
+    const icon = day.day.condition.icon ? `https:${day.day.condition.icon}` : "default-icon.png";
+    const conditionText = day.day.condition.text || "Unknown";
+
     const card = document.createElement("div");
     card.classList.add("forecast-card", "fade-in");
     card.style.animationDelay = `${index * 0.1}s`;
 
     card.innerHTML = `
       <h3>${day.date}</h3>
-      <img src="https:${day.day.condition.icon}" alt="${day.day.condition.text}">
-      <p><i class="fa-solid fa-cloud"></i> ${day.day.condition.text}</p>
+      <img src="${icon}" alt="${conditionText}" aria-label="Weather icon for ${conditionText}" />
+      <p><i class="fa-solid fa-cloud"></i> ${conditionText}</p>
       <p>🌡️ High: ${day.day.maxtemp_c} °C</p>
       <p>🌡️ Low: ${day.day.mintemp_c} °C</p>
       <p>💧 Humidity: ${day.day.avghumidity}%</p>
