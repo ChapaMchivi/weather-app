@@ -72,7 +72,6 @@ WEATHER-APP/
 ---
 
 ## 🔗 Project Link
-👉 [Live Demo](https://chapamchivi.github.io/weather-app/)  
 👉 [GitHub Repository](https://github.com/ChapaMchivi/weather-app)
 
 ---
