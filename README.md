@@ -60,6 +60,7 @@ This project showcases a **real‑world workflow**: integrating a third‑party 
 👉 [Live Demo](https://chapamchivi.github.io/weather-app/)  
 👉 [GitHub Repository](https://github.com/ChapaMchivi/weather-app)
 
+⚠️ Note: The live demo includes an exposed API key for demonstration purposes only. In production, API keys should always be secured.
 ---
 
 ### 📜 License
