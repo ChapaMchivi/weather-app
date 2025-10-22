@@ -4,7 +4,10 @@ async function getWeather() {
   const city = document.getElementById("cityInput").value || "London";
 
   // ✅ Call your deployed backend proxy on Render
+  // const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
+
   const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
+
 
   try {
     const response = await fetch(url);
