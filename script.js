@@ -1,15 +1,22 @@
-async function getWeather() {
-  const city = document.getElementById("cityInput").value.trim() || "London";
+// script.js
 
-  // Secure proxy call to Render backend
+// Fetch weather data from secure backend proxy
+async function getWeather() {
+  const cityInput = document.getElementById("cityInput");
+  const forecastDiv = document.getElementById("forecast");
+  const loadingSpinner = document.getElementById("loading");
+
+  const city = cityInput.value.trim() || "London";
   const url = `https://weather-app-backend-w78l.onrender.com/weather?city=${encodeURIComponent(city)}`;
 
   try {
     // Show loading spinner
-    document.getElementById("loading").style.display = "block";
+    loadingSpinner.style.display = "block";
 
     const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
     const data = await response.json();
     console.log("Weather data:", data);
@@ -18,14 +25,18 @@ async function getWeather() {
     setDynamicBackground(data.current.condition.text.toLowerCase());
   } catch (error) {
     console.error("Error fetching weather data:", error);
-    document.getElementById("forecast").innerHTML =
-      `<p style="color:red;">Failed to load weather data. Please check the city name.</p>`;
+    forecastDiv.innerHTML = `
+      <p style="color:red;">
+        Failed to load weather data. Please check the city name or try again later.
+      </p>
+    `;
   } finally {
     // Hide loading spinner
-    document.getElementById("loading").style.display = "none";
+    loadingSpinner.style.display = "none";
   }
 }
 
+// Render forecast cards dynamically
 function renderForecast(data) {
   const forecastDiv = document.getElementById("forecast");
   forecastDiv.innerHTML = `
@@ -55,6 +66,7 @@ function renderForecast(data) {
   });
 }
 
+// Set dynamic background based on weather condition
 function setDynamicBackground(condition) {
   const body = document.body;
 
@@ -70,3 +82,4 @@ function setDynamicBackground(condition) {
     body.style.background = "linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%)";
   }
 }
+
