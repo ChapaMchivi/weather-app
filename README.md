@@ -73,7 +73,7 @@ WEATHER-APP/
 
 ## 🔗 Project Link
 👉 [GitHub Repository](https://github.com/ChapaMchivi/weather-app)
-
+👉 https://chapamchivi.github.io/weather-app/
 ---
 
 ## 💼 Share on LinkedIn
